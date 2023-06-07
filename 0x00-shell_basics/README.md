@@ -53,3 +53,7 @@ mkdir -p welcome/to/school
 
 18-Life is a series of commas, not periods
 ls -xamp
+
+19-school.mgc
+0 string SCHOOL School data
+!:mime School
