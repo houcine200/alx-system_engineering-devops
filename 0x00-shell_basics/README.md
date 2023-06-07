@@ -41,3 +41,10 @@ ln -s /bin/ls __ls__
 
 14-copy_html
 cp -u *.html ..
+
+15-lets_move
+mv [[:upper:]]* /tmp/u
+
+16-clean_emacs
+rm *~
+
