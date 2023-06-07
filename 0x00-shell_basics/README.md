@@ -40,5 +40,4 @@ file /tmp/iamafile
 ln -s /bin/ls __ls__
 
 14-copy_html
-cp -u *.htm ..
-
+cp -u *.html ..
