@@ -48,3 +48,8 @@ mv [[:upper:]]* /tmp/u
 16-clean_emacs
 rm *~
 
+17-tree
+mkdir -p welcome/to/school
+
+18-Life is a series of commas, not periods
+ls -xamp
