@@ -41,3 +41,12 @@ mkdir -m 751 my_dir
 
 13-change_group
 chgrp school hello
+
+100-change_owner_and_group
+chown -hR vincent:staff .
+
+101-symbolic_link_permissions
+chown -h vincent:staff _hello
+
+102-if_only
+chown --from=guillaume betty hello
