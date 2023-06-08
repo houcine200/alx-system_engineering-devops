@@ -29,3 +29,15 @@ chmod 007 hello
 
 9-John_Doe
 chmod 753 hello
+
+10-mirror_permissions
+chmod --reference=olleh hello
+
+11-directories_permissions
+chmod -R ugo+X .
+
+12-directory_permissions
+mkdir -m 751 my_dir
+
+13-change_group
+chgrp school hello
