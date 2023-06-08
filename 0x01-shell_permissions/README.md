@@ -50,3 +50,6 @@ chown -h vincent:staff _hello
 
 102-if_only
 chown --from=guillaume betty hello
+
+103-Star_Wars
+telnet towel.blinkenlights.nl
