@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 #displays The content of the current directory
-list=$ls
 for i in *
 do
-    echo "$(echo "$i" | cut -d '-' -f2-)"
+    my_list=$(echo "$i" | cut -d '-' -f2-)
+    echo "$my_list"
 done
