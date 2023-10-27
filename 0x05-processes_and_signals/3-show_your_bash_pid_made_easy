@@ -1,0 +1,5 @@
+#!/bin/bash
+
+# Use pgrep to find processes with "bash"
+# in their name and display PID and process name
+pgrep -l "bash"
