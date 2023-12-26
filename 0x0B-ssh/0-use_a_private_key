@@ -1,2 +1,4 @@
 #!/usr/bin/env bash
+# establish an SSH connection to a server using a private key.
 ssh -i ~/.ssh/school ubuntu@54.236.231.98
+#ssh -i "$PRIVATE_KEY" "$USERNAME@$REMOTE_IP"
