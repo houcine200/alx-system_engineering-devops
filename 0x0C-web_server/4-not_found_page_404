@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+# Config Nginx server to have a custom 404 page that contains the string
+
+# Checking if Nginx is installed
+if ! command -v nginx &> /dev/null; then
+    sudo apt-get update
+    sudo apt-get -y install nginx
+fi
+
+# Create a sample index file
+sudo bash -c 'echo "Hello World!" > /var/www/html/index.nginx-debian.html'
+
+# Define redirection configuration
+line_number=53
+text_to_insert="location /redirect_me {\n\treturn 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;\n}"
+
+# Insert the redirection configuration into Nginx default site configuration
+sudo sed -i "${line_number}a$text_to_insert" /etc/nginx/sites-available/default
+
+# Insert the custom 404 page configuration into Nginx default site configuration after the server_name directive
+text_to_insert2="error_page 404 /custom_404.html;\nlocation = /custom_404.html {\nroot /usr/share/nginx/html;\ninternal;\n}"
+sudo sed -i "/server_name _;/a $text_to_insert2" /etc/nginx/sites-enabled/default
+
+# Reload Nginx configuration
+sudo service nginx start
