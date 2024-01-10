@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+# debugging nginx
+service nginx restart
