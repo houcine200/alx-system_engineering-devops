@@ -1,12 +1,20 @@
 #!/usr/bin/env bash
 # Takes a subdomain and a domain and returns information about the subdomain
 
-if [ "$#" -eq 1 ]; then
-    echo "$(dig www.$1 | awk '/ANSWER SECTION:/ {getline; print "The subdomain www is a "$4" record and points to "$5}')"
-    echo "$(dig lb-01.$1 | awk '/ANSWER SECTION:/ {getline; print "The subdomain lb-01 is a "$4" record and points to "$5}')"
-    echo "$(dig web-01.$1 | awk '/ANSWER SECTION:/ {getline; print "The subdomain web-01 is a "$4" record and points to "$5}')"
-    echo "$(dig web-02.$1 | awk '/ANSWER SECTION:/ {getline; print "The subdomain web-02 is a "$4" record and points to "$5}')"
-elif [ "$#" -eq 2 ]; then
-    subdomain=$2
-    echo "$(dig $subdomain.$1 | awk '/ANSWER SECTION:/ {getline; print "The subdomain '"$subdomain"' is a "$4" record and points to "$5}')"
+dns_info() {
+    local domain="$1"
+    local subdomain="$2"
+    ip_address=$(dig "$subdomain.$domain" +short)
+    record_type=$(dig "$subdomain.$domain" | awk '/ANSWER SECTION:/ {getline; print $4}')
+
+    echo "The subdomain $subdomain is a $record_type record and points to $ip_address"
+}
+
+if (( $# == 1)); then
+    dns_info "$1" "www"
+    dns_info "$1" "lb-01"
+    dns_info "$1" "web-01"
+    dns_info "$1" "web-02"
+elif (( $# == 2)); then
+    dns_info "$1" "$2"
 fi
