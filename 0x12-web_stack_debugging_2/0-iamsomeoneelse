@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+#un the 'whoami' command under the user passed as an argument
+#sudo -u <username> <command>
+sudo -u $1 whoami
