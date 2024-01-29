@@ -24,13 +24,13 @@ if __name__ == "__main__":
             completed_tasks.append(task)
 
 
-row_list = []
-for task in tasks:
-    row_list.append([employee_id,
-                    employee.get('username'),
-                    task.get('completed'),
-                    task.get('title')])
+    row_list = []
+    for task in tasks:
+        row_list.append([employee_id,
+                        employee.get('username'),
+                        task.get('completed'),
+                        task.get('title')])
 
-with open(f"{employee_id}.csv", "w", newline='') as file:
-    writer = csv.writer(file, delimiter=",", quoting=csv.QUOTE_ALL)
-    writer.writerows(row_list)
+    with open(f"{employee_id}.csv", "w", newline='') as file:
+        writer = csv.writer(file, delimiter=",", quoting=csv.QUOTE_ALL)
+        writer.writerows(row_list)
