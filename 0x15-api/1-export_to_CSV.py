@@ -23,7 +23,6 @@ if __name__ == "__main__":
         if task.get("completed"):
             completed_tasks.append(task)
 
-
     row_list = []
     for task in tasks:
         row_list.append([employee_id,
