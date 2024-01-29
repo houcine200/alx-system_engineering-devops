@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+"""Fetch & display TODO list progress for given employee ID using REST API."""
 import requests
 from sys import argv
 
