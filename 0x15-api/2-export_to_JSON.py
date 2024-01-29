@@ -16,17 +16,13 @@ if __name__ == "__main__":
     tasks = []
     for task in todos:
         if task.get("userId") == employee_id:
-            tasks.append(task)
-
-    data = {
-        "USER_ID": [
-            {
+            tasks.append({
                 "task": task.get("title"),
                 "completed": task.get("completed"),
                 "username": employee.get("username")
-            }
-            for task in tasks
-        ]
-    }
+            })
+
+    data = {f"{employee_id}": tasks}
+
     with open(f"{employee_id}.json", "w") as json_file:
-        json.dump(data, json_file)
+        json.dump(data, json_file, indent=2)
