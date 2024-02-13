@@ -1,30 +1,31 @@
 #!/usr/bin/python3
-""" Top hot articles """
 import requests
 
+"""
+Queries the Reddit API to get the titles
+of all hot articles for a given subreddit.
+"""
 
-def recurse(subreddit, hot_list=[], after=""):
-    """
-        Recurse function
-    """
-    req = requests.get(
+
+def recurse(subreddit, hot_list=[], after=''):
+    """Recursively get the titles of all hot articles for a given subreddit."""
+
+    response = requests.get(
         f"https://www.reddit.com/r/{subreddit}/hot.json",
-        headers={"User-Agent": "Custom"},
-        params={"after": after},
+        headers={'User-Agent': 'MyCustomUserAgent/1.0'},
+        params={'limit': 100, 'after': after},
     )
 
-    if req.status_code == 200:
-        data = req.json().get("data")
-        if data and "children" in data:
-            for child in data["children"]:
-                if "data" in child and "title" in child["data"]:
-                    hot_list.append(child["data"]["title"])
-            after = data.get("after")
-            if after:
-                return recurse(subreddit, hot_list, after)
-            else:
-                return hot_list
-        else:
-            return None
-    else:
+    if response.status_code != 200:
         return None
+
+    data = response.json()
+    posts = data['data']['children']
+    for post in posts:
+        hot_list.append(post['data']['title'])
+
+    after = data['data']['after']
+    if after is not None:
+        return recurse(subreddit, hot_list, after)
+    else:
+        return hot_list
