@@ -1,0 +1,28 @@
+server {
+    listen 80;
+    server_name 54.236.231.98;
+
+    location /hbnb_static {
+        alias /data/web_static/current/;
+    }
+
+    location /airbnb-onepage/ {
+        proxy_pass http://127.0.0.1:5000;
+    }
+
+    location ~/airbnb-dynamic/number_odd_or_even/(\d+)$ {
+        proxy_pass http://127.0.0.1:5001/number_odd_or_even/$1;
+    }
+
+    location /api/ {
+        proxy_pass http://127.0.0.1:5002;
+    }
+
+    location /static/ {
+        alias /home/ubuntu/AirBnB_clone_v4/web_dynamic/static/;
+    }
+
+    location / {
+        proxy_pass http://127.0.0.1:5003;
+    }
+}
