@@ -1,16 +1,4 @@
 #!/usr/bin/env bash
 # Reload Gunicorn without service interruption
 
-# Check if Gunicorn is running
-if ! pgrep gunicorn > /dev/null; then
-    echo "Gunicorn is not running."
-    exit 1
-fi
-
-# Reload Gunicorn gracefully
-echo "Reloading Gunicorn without downtime..."
-if pgrep gunicorn | xargs -I {} kill -HUP {}; then
-    echo "Gunicorn reloaded successfully."
-else
-    echo "Failed to reload Gunicorn. Check logs for more information."
-fi
+pgrep gunicorn | xargs -I {} kill -HUP {}
